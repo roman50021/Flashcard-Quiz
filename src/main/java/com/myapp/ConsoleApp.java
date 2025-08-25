@@ -8,10 +8,7 @@ import com.myapp.repo.CardRepository;
 import com.myapp.repo.DeckRepository;
 import com.myapp.repo.jdbc.JdbcCardRepository;
 import com.myapp.repo.jdbc.JdbcDeckRepository;
-import com.myapp.service.CardService;
-import com.myapp.service.DeckService;
-import com.myapp.service.QuizService;
-import com.myapp.service.ValidationService;
+import com.myapp.service.*;
 import com.myapp.util.ConnectionProvider;
 import com.myapp.util.DbMigrator;
 
@@ -31,9 +28,11 @@ public class ConsoleApp {
         DeckService deckService = new DeckService(deckRepo, v);
         CardService cardService = new CardService(cardRepo, v);
         QuizService quizService = new QuizService(cardRepo);
+        DeckImportExportService deckIO = new DeckImportExportService(deckRepo, cardRepo);
 
         ServiceLocator.setCardService(cardService);
         ServiceLocator.setQuizService(quizService);
+        ServiceLocator.setDeckIo(deckIO);
 
         ConsoleIO io = new ConsoleIO();
         new MainMenu(io, deckService).run();

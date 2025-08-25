@@ -27,7 +27,6 @@ public class MainMenu {
         }
     }
 
-
     private void createDeck() {
         String name = io.readNonEmpty("Назва колоди: ");
         try {
